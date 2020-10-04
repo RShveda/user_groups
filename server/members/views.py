@@ -53,7 +53,7 @@ def group_detail(request, pk):
 @csrf_exempt
 def person_list(request):
     """
-    List all groups or create a new one
+    List all people or create a new one
     """
     if request.method == 'GET':
         members = Person.objects.all()
