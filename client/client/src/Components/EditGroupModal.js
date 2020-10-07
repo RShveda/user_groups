@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 
-class EditPersonModal extends React.Component {
+class EditGroupModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: props.item.username,
-      group: props.item.group,
+      name: props.item.name,
+      description: props.item.description,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,14 +19,13 @@ class EditPersonModal extends React.Component {
   }
 
   handleSubmit(event) {
-    fetch('http://127.0.0.1:8000/members/' + this.props.item.id + '/', {
+    fetch('http://127.0.0.1:8000/groups/' + this.props.item.id + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state)
       }).then(function(response) {
         console.log(response)
         return response.json();
       });
-
   }
 
   render() {
@@ -43,21 +42,16 @@ class EditPersonModal extends React.Component {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h4>{this.state.username}</h4>
+              <h4>{this.state.name}</h4>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
-                  <Form.Label>Edit user name:</Form.Label>
-                  <Form.Control type="text" value={this.state.username} name="username" onChange={this.handleChange} />
+                  <Form.Label>Edit name:</Form.Label>
+                  <Form.Control type="text" value={this.state.name} name ="name" onChange={this.handleChange} />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Pick a group:</Form.Label>
-                  <Form.Control as="select" value={this.state.group || undefined} name ="group" onChange={this.handleChange}>
-                    <option value="">----</option>
-                    {this.props.groups.map(item => (
-                        <option key={item.id} value={item.id}>{item.name}</option>
-                    ))}
-                  </Form.Control>
+                  <Form.Label>Edit description:</Form.Label>
+                  <Form.Control as="textarea" rows="3" value={this.state.description} name ="description" onChange={this.handleChange} />
                 </Form.Group>
 
                 <Button type="submit">Submit</Button>
@@ -69,4 +63,4 @@ class EditPersonModal extends React.Component {
   }
 }
 
-export default EditPersonModal;
+export default EditGroupModal;
