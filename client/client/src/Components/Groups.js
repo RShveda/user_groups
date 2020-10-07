@@ -45,7 +45,6 @@ class AddGroup extends React.Component {
     alert('A name was submitted: ' + this.state.name);
     fetch('http://127.0.0.1:8000/groups/', {
         method: 'POST',
-        // We convert the React state to JSON and send it as the POST body
         body: JSON.stringify(this.state)
       }).then(function(response) {
         console.log(response)
@@ -91,7 +90,6 @@ class EditGroup extends React.Component {
     alert('A name was submitted: ' + this.state.name);
     fetch('http://127.0.0.1:8000/groups/' + this.props.item.id + '/', {
         method: 'PUT',
-        // We convert the React state to JSON and send it as the POST body
         body: JSON.stringify(this.state)
       }).then(function(response) {
         console.log(response)
@@ -133,7 +131,6 @@ class DeleteGroup extends React.Component {
     fetch('http://127.0.0.1:8000/groups/' + this.props.item.id + '/', {
         headers: {'Content-Type': 'application/json'},
         method: 'DELETE',
-        // We convert the React state to JSON and send it as the POST body
         body: JSON.stringify(this.state)
       }).then(function(response) {
         console.log(response)
