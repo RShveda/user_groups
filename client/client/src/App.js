@@ -8,6 +8,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { Jumbotron } from 'react-bootstrap';
 
 class App extends Component {
 
@@ -47,20 +48,20 @@ class App extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/People">People</Link>
+                <Link to="/people">People</Link>
               </li>
               <li>
-                <Link to="/Groups">Groups</Link>
+                <Link to="/groups">Groups</Link>
               </li>
             </ul>
           </nav>
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
-            <Route path="/People">
+            <Route path="/people">
               <People data = {this.state}/>
             </Route>
-            <Route path="/Groups">
+            <Route path="/groups">
               <Groups data = {this.state}/>
             </Route>
             <Route path="/">
@@ -74,7 +75,11 @@ class App extends Component {
 }
 
 function Home() {
-  return <h2>This is homepage</h2>;
+  return (
+    <Jumbotron>
+      <h2>This is a homepage</h2>
+    </Jumbotron>
+  )
 }
 
 export default App;
