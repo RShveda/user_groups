@@ -29,7 +29,7 @@ class DeleteGroupModal extends React.Component {
     let button;
     let message;
     if (anyMember){
-      message = <h4>You cannot delete group with memebers</h4>;
+      message = <h4>You cannot delete group with members</h4>;
     } else {
       button = <Button type="submit">Submit</Button>;
       message = <h4>Are you sure you wan to delete {this.state.name}?</h4>;

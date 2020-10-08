@@ -35,7 +35,7 @@ class People extends Component{
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
+              <th>ID</th>
               <th>Name</th>
               <th>Group</th>
               <th>Join date</th>
@@ -47,7 +47,7 @@ class People extends Component{
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.username}</td>
-                <td>{item.group}</td>
+                <td>{item.group_name}</td>
                 <td>{item.date}</td>
                 <td>
                   <Button variant="primary" onClick={() => this.setEditModalShow(true, item.id)}>
@@ -94,7 +94,7 @@ class AddPerson extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.username);
+    alert('A name was submitted: ' + this.state.username + "and a group: " + this.state.group);
     fetch('http://127.0.0.1:8000/members/', {
         method: 'POST',
         // We convert the React state to JSON and send it as the POST body

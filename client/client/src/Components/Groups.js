@@ -36,8 +36,9 @@ class Groups extends Component{
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
+              <th>ID</th>
               <th>Name</th>
+              <th>Members</th>
               <th>Description</th>
               <th>Actions</th>
             </tr>
@@ -47,6 +48,7 @@ class Groups extends Component{
                <tr key={item.id}>
                  <td>{item.id}</td>
                  <td>{item.name}</td>
+                 <td>{item.members_count}</td>
                  <td>{item.description}</td>
                  <td>
                  <Button variant="primary" onClick={() => this.setEditModalShow(true, item.id)}>
@@ -64,7 +66,7 @@ class Groups extends Component{
                    show={this.state.deleteModals[item.id]}
                    onHide={() => this.setDeleteModalShow(false, item.id)}
                    item={item}
-                   anyMember = {false}
+                   anyMember = {item.members_count}
                  />
                  </td>
                 </tr>

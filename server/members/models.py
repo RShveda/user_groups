@@ -8,6 +8,11 @@ class Group(models.Model):
     def __str__(self):
         return self.name
 
+    def members_count(self):
+        members = Person.objects.filter(group=self.id)
+        return len(members)
+
+
 
 class Person(models.Model):
     username = models.CharField(max_length=100)
@@ -16,3 +21,6 @@ class Person(models.Model):
 
     def __str__(self):
         return self.username
+
+    def group_name(self):
+        return str(self.group)
