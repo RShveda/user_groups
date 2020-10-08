@@ -15,9 +15,6 @@ class EditPersonModal extends React.Component {
   }
 
   handleChange(event) {
-    console.log(event.target.value);
-    console.log(event.target.name);
-    console.log(this.state);
     this.setState({[event.target.name]: event.target.value});
   }
 
@@ -26,10 +23,8 @@ class EditPersonModal extends React.Component {
         method: 'PUT',
         body: JSON.stringify(this.state)
       }).then(function(response) {
-        console.log(response)
         return response.json();
       });
-
   }
 
   render() {

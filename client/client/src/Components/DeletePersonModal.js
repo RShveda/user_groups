@@ -18,7 +18,6 @@ class DeletePersonModal extends React.Component {
         method: 'DELETE',
         body: JSON.stringify(this.state)
       }).then(function(response) {
-        console.log(response)
         return response.text();
       });
   }
@@ -27,7 +26,7 @@ class DeletePersonModal extends React.Component {
     return(
       <Modal
             show={this.props.show}
-            onHide = {this.props.onHide}            
+            onHide = {this.props.onHide}
             aria-labelledby="contained-modal-title-vcenter"
             centered
           >
@@ -43,7 +42,7 @@ class DeletePersonModal extends React.Component {
                 <Button className="float-right" variant="danger" onClick={this.props.onHide}>Cancel</Button>
               </Form>
             </Modal.Body>
-          </Modal>
+      </Modal>
     )
   }
 }

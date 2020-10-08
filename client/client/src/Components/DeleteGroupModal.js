@@ -19,7 +19,6 @@ class DeleteGroupModal extends React.Component {
         method: 'DELETE',
         body: JSON.stringify(this.state)
       }).then(function(response) {
-        console.log(response)
         return response.text();
       });
   }

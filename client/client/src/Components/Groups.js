@@ -7,12 +7,12 @@ import DeleteGroupModal from './DeleteGroupModal';
 class Groups extends Component{
   constructor(props) {
     super(props);
-    this.setEditModalShow = this.setEditModalShow.bind(this);
-    this.setDeleteModalShow = this.setDeleteModalShow.bind(this);
     this.state = {
       editModals:{},
       deleteModals:{},
     };
+    this.setEditModalShow = this.setEditModalShow.bind(this);
+    this.setDeleteModalShow = this.setDeleteModalShow.bind(this);
   }
 
   setEditModalShow(bool, id) {
@@ -33,6 +33,7 @@ class Groups extends Component{
         <h1>This is Groups page!</h1>
         <h5>You may add new group:</h5>
         <AddGroup />
+
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -99,7 +100,6 @@ class AddGroup extends React.Component {
         method: 'POST',
         body: JSON.stringify(this.state)
       }).then(function(response) {
-        console.log(response)
         return response.json();
       });
   }
@@ -112,12 +112,10 @@ class AddGroup extends React.Component {
             <Form.Label>Group name:</Form.Label>
             <Form.Control type="text" value={this.state.name} name ="name" onChange={this.handleChange} />
           </Form.Group>
-
           <Form.Group>
             <Form.Label>Group description:</Form.Label>
             <Form.Control as="textarea" rows="2" value={this.state.description} name ="description" onChange={this.handleChange} />
           </Form.Group>
-
           <Button type="submit">Submit</Button>
         </Form>
         <br/>

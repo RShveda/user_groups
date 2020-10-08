@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Group(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -11,7 +12,6 @@ class Group(models.Model):
     def members_count(self):
         members = Person.objects.filter(group=self.id)
         return len(members)
-
 
 
 class Person(models.Model):

@@ -8,6 +8,11 @@ services:
       - ./server:/code/server
     ports:
       - "8000:8000"
+  migration:
+    build: ./server
+    command: python manage.py migrate --noinput
+    volumes:
+      - ./server:/code/server
   react:
     build: ./client/client
     command: npm start

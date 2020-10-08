@@ -23,7 +23,6 @@ class EditGroupModal extends React.Component {
         method: 'PUT',
         body: JSON.stringify(this.state)
       }).then(function(response) {
-        console.log(response)
         return response.json();
       });
   }

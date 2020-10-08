@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Person, Group
 
+
 class GroupSerializer(serializers.ModelSerializer):
 
     members_count = serializers.ReadOnlyField()
@@ -17,4 +18,3 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ["id", "username", "date", "group", "group_name"]
-

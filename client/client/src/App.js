@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { Jumbotron, Container, Navbar, Nav } from 'react-bootstrap';
 
+
 class App extends Component {
 
   state = {
@@ -45,16 +46,15 @@ class App extends Component {
           <Container>
             <Navbar bg="light">
               <Nav className="mr-auto">
-                  <Nav.Link componentClass='span'>
+                  <Nav.Link as="span">
                     <Link to="/">Home</Link>
                   </Nav.Link>
-                  <Nav.Link componentClass='span'>
+                  <Nav.Link as="span">
                     <Link to="/people">People</Link>
                   </Nav.Link>
-                  <Nav.Link componentClass='span'>
+                  <Nav.Link as="span">
                     <Link to="/groups">Groups</Link>
                   </Nav.Link>
-
               </Nav>
             </Navbar>
           </Container>

@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from members.models import Person, Group
 from members.serializers import PersonSerializer, GroupSerializer
 # Create your views here.
+
 
 @csrf_exempt
 def group_list(request):
@@ -23,6 +23,7 @@ def group_list(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
 
 @csrf_exempt
 def group_detail(request, pk):
@@ -50,6 +51,7 @@ def group_detail(request, pk):
         group.delete()
         return HttpResponse(status=204)
 
+
 @csrf_exempt
 def person_list(request):
     """
@@ -67,6 +69,7 @@ def person_list(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
 
 @csrf_exempt
 def person_detail(request, pk):
