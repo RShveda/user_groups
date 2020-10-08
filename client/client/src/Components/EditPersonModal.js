@@ -15,6 +15,9 @@ class EditPersonModal extends React.Component {
   }
 
   handleChange(event) {
+    console.log(event.target.value);
+    console.log(event.target.name);
+    console.log(this.state);
     this.setState({[event.target.name]: event.target.value});
   }
 

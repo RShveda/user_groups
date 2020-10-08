@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, Container, Form, Col } from 'react-bootstrap';
 import EditPersonModal from './EditPersonModal';
 import DeletePersonModal from './DeletePersonModal';
 
@@ -29,8 +29,10 @@ class People extends Component{
 
   render() {
     return (
-      <div className="container">
-        This is people page!
+      <Container>
+        <h1>This is people page!</h1>
+        <h5>You may add new person:</h5>
+
         <AddPerson groups = {this.props.data.groups}/>
         <Table striped bordered hover>
           <thead>
@@ -72,7 +74,7 @@ class People extends Component{
             ))}
             </tbody>
         </Table>
-      </div>
+      </Container>
     );
   }
 }
@@ -91,10 +93,12 @@ class AddPerson extends React.Component {
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
+    console.log(event.target.value);
+    console.log(event.target.name);
+    console.log(this.state);
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.username + "and a group: " + this.state.group);
     fetch('http://127.0.0.1:8000/members/', {
         method: 'POST',
         // We convert the React state to JSON and send it as the POST body
@@ -107,22 +111,25 @@ class AddPerson extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.username} name ="username" onChange={this.handleChange} />
-        </label>
-        <label>
-          Pick a group:
-          <select value={undefined} name = "group" onChange={this.handleChange}>
-          <option value={undefined}>----</option>
-            {this.props.groups.map(item => (
-                <option key={item.id} value={item.id}>{item.name}</option>
-            ))}
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <Col lg={6}>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Group>
+          <Form.Label>Name:</Form.Label>
+          <Form.Control type="text" value={this.state.username} name="username" onChange={this.handleChange} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Pick a group</Form.Label>
+            <Form.Control as="select" value={this.state.group} name ="group" onChange={this.handleChange}>
+              <option value="">----</option>
+              {this.props.groups.map(item => (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+              ))}
+            </Form.Control>
+        </Form.Group>
+        <Button type="submit">Submit</Button>
+      </Form>
+      <br/>
+      </Col>
     );
   }
 }

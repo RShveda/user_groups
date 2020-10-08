@@ -8,7 +8,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Container, Navbar, Nav } from 'react-bootstrap';
 
 class App extends Component {
 
@@ -42,19 +42,22 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/people">People</Link>
-              </li>
-              <li>
-                <Link to="/groups">Groups</Link>
-              </li>
-            </ul>
-          </nav>
+          <Container>
+            <Navbar bg="light">
+              <Nav className="mr-auto">
+                  <Nav.Link componentClass='span'>
+                    <Link to="/">Home</Link>
+                  </Nav.Link>
+                  <Nav.Link componentClass='span'>
+                    <Link to="/people">People</Link>
+                  </Nav.Link>
+                  <Nav.Link componentClass='span'>
+                    <Link to="/groups">Groups</Link>
+                  </Nav.Link>
+
+              </Nav>
+            </Navbar>
+          </Container>
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
@@ -76,9 +79,11 @@ class App extends Component {
 
 function Home() {
   return (
-    <Jumbotron>
-      <h2>This is a homepage</h2>
-    </Jumbotron>
+    <Container>
+      <Jumbotron>
+        <h1>This is a homepage</h1>
+      </Jumbotron>
+    </Container>
   )
 }
 

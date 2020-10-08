@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, Container, Col, Form } from 'react-bootstrap';
 import EditGroupModal from './EditGroupModal';
 import DeleteGroupModal from './DeleteGroupModal';
 
@@ -29,9 +29,9 @@ class Groups extends Component{
 
   render() {
     return (
-      <div>
-        This is Groups page!
-        Add a new group:
+      <Container>
+        <h1>This is Groups page!</h1>
+        <h5>You may add new group:</h5>
         <AddGroup />
         <Table striped bordered hover>
           <thead>
@@ -73,7 +73,7 @@ class Groups extends Component{
              ))}
              </tbody>
          </Table>
-      </div>
+      </Container>
     );
   }
 }
@@ -106,17 +106,22 @@ class AddGroup extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.name} name ="name" onChange={this.handleChange} />
-        </label>
-        <label>
-          Description:
-          <textarea value={this.state.description} name ="description" onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <Col lg={6}>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+            <Form.Label>Group name:</Form.Label>
+            <Form.Control type="text" value={this.state.name} name ="name" onChange={this.handleChange} />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Group description:</Form.Label>
+            <Form.Control as="textarea" rows="2" value={this.state.description} name ="description" onChange={this.handleChange} />
+          </Form.Group>
+
+          <Button type="submit">Submit</Button>
+        </Form>
+        <br/>
+      </Col>
     );
   }
 }
