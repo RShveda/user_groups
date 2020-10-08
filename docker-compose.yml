@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  django:
+    build: ./server
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./server:/code/server
+    ports:
+      - "8000:8000"
+  react:
+    build: ./client/client
+    command: npm start
+    volumes:
+      - ./client/client:/code/client/client
+      - node-modules:/code/client/client/node_modules
+    ports:
+      - "3001:3000"
+    stdin_open: true
+volumes:
+  node-modules:
