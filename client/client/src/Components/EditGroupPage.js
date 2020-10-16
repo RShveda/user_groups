@@ -39,7 +39,10 @@ class EditGroupPage extends React.Component {
     try {
         await fetch('http://127.0.0.1:8000/groups/' + this.props.match.params.groupId + '/',{
           method: 'PUT',
-          body: JSON.stringify(this.state)
+          body: JSON.stringify(this.state),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       );
     } catch (e) {
@@ -50,7 +53,9 @@ class EditGroupPage extends React.Component {
 
   render() {
     if (this.state.redirectToReferrer) {
-            return <Redirect to="/groups" />
+            // return <Redirect to="/groups" /> // <- this not usable because it redirects without updating state of Groups
+            // to make this usable: pass a method from Groups to update this group state
+            return window.location.assign("/groups"); // <- this reloads a page and update state from back-end
         }
     return(
             <Container>

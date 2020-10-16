@@ -21,7 +21,10 @@ class EditPersonModal extends React.Component {
   handleSubmit(event) {
     fetch('http://127.0.0.1:8000/members/' + this.props.item.id + '/', {
         method: 'PUT',
-        body: JSON.stringify(this.state)
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
+        },
       }).then(function(response) {
         return response.json();
       });
