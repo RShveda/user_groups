@@ -25,9 +25,8 @@ def group_list(request):
         return JsonResponse(serializer.errors, status=400)
 
     elif request.method == 'OPTIONS':
-        print("options request - groups")
         response = HttpResponse(status=204, content_type='application/json')
-        response['allow'] = 'GET,POST'
+        response['allow'] = 'GET,POST,OPTIONS'
         return response
 
 
@@ -58,9 +57,8 @@ def group_detail(request, pk):
         return HttpResponse(status=204)
 
     elif request.method == 'OPTIONS':
-        print("options request - group")
         response = HttpResponse(status=204, content_type='application/json')
-        response['allow'] = 'GET,PUT,DELETE'
+        response['allow'] = 'GET,PUT,DELETE,OPTIONS'
         return response
 
 
@@ -84,9 +82,8 @@ def person_list(request):
         return JsonResponse(serializer.errors, status=400)
 
     elif request.method == 'OPTIONS':
-        print("options request - members")
         response = HttpResponse(status=204, content_type='application/json')
-        response['allow'] = 'GET,POST'
+        response['allow'] = 'GET,POST,OPTIONS'
         return response
 
 
@@ -117,7 +114,6 @@ def person_detail(request, pk):
         return HttpResponse(status=204)
 
     elif request.method == 'OPTIONS':
-        print("options request - member")
         response = HttpResponse(status=204, content_type='application/json')
-        response['allow'] = 'GET,PUT,DELETE'
+        response['allow'] = 'GET,PUT,DELETE,OPTIONS'
         return response
