@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import People from './Components/People';
 import Groups from './Components/Groups';
+import EditGroupPage from './Components/EditGroupPage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +18,11 @@ class App extends Component {
     members:[],
     groups:[],
   };
+
+  constructor(props) {
+    super(props);
+    this.setGroupState = this.setGroupState.bind(this);
+  }
 
   async componentDidMount() {
     try {
@@ -37,6 +43,10 @@ class App extends Component {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  setGroupState(group){
+    console.log("group");
   }
 
   render() {
@@ -64,10 +74,13 @@ class App extends Component {
             <Route path="/people">
               <People data = {this.state}/>
             </Route>
-            <Route path="/groups">
+            <Route exact path="/groups">
               <Groups data = {this.state}/>
             </Route>
-            <Route path="/">
+            <Route path="/group/:groupId/edit">
+              <EditGroupPage groups = {this.state.groups} />
+            </Route>
+            <Route exact path="/">
               <Home />
             </Route>
           </Switch>

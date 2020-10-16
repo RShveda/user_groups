@@ -24,6 +24,12 @@ def group_list(request):
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
+    elif request.method == 'OPTIONS':
+        print("options request - groups")
+        response = HttpResponse(status=204, content_type='application/json')
+        response['allow'] = 'GET,POST'
+        return response
+
 
 @csrf_exempt
 def group_detail(request, pk):
@@ -51,6 +57,13 @@ def group_detail(request, pk):
         group.delete()
         return HttpResponse(status=204)
 
+    elif request.method == 'OPTIONS':
+        print("options request - group")
+        response = HttpResponse(status=204, content_type='application/json')
+        response['allow'] = 'GET,PUT,DELETE'
+        return response
+
+
 
 @csrf_exempt
 def person_list(request):
@@ -69,6 +82,12 @@ def person_list(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == 'OPTIONS':
+        print("options request - members")
+        response = HttpResponse(status=204, content_type='application/json')
+        response['allow'] = 'GET,POST'
+        return response
 
 
 @csrf_exempt
@@ -96,3 +115,9 @@ def person_detail(request, pk):
     elif request.method == 'DELETE':
         person.delete()
         return HttpResponse(status=204)
+
+    elif request.method == 'OPTIONS':
+        print("options request - member")
+        response = HttpResponse(status=204, content_type='application/json')
+        response['allow'] = 'GET,PUT,DELETE'
+        return response

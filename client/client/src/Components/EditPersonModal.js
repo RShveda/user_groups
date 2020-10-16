@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 
@@ -25,6 +25,9 @@ class EditPersonModal extends React.Component {
       }).then(function(response) {
         return response.json();
       });
+      // TODO: needs to be refactored to prevent form default behaviour which send
+      // unnecessary requests to back-end causing server error
+      // see EditGroupPage for possible refactor strategy
   }
 
   render() {

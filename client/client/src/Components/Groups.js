@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import { Button, Table, Container, Col, Form } from 'react-bootstrap';
-import EditGroupModal from './EditGroupModal';
 import DeleteGroupModal from './DeleteGroupModal';
+import { Link } from "react-router-dom";
 
 
 class Groups extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      editModals:{},
       deleteModals:{},
     };
-    this.setEditModalShow = this.setEditModalShow.bind(this);
     this.setDeleteModalShow = this.setDeleteModalShow.bind(this);
-  }
-
-  setEditModalShow(bool, id) {
-    var editModals = this.state.editModals
-    editModals[id] = bool
-    this.setState({editModals});
   }
 
   setDeleteModalShow(bool, id) {
@@ -52,23 +44,23 @@ class Groups extends Component{
                  <td>{item.members_count}</td>
                  <td>{item.description}</td>
                  <td>
-                 <Button variant="primary" onClick={() => this.setEditModalShow(true, item.id)}>
-                  Edit Group
-                 </Button>
-                 <EditGroupModal
-                   show={this.state.editModals[item.id]}
-                   onHide={() => this.setEditModalShow(false, item.id)}
-                   item={item}
-                 />
-                 <Button variant="danger" onClick={() => this.setDeleteModalShow(true, item.id)}>
-                  Delete Group
-                 </Button>
-                 <DeleteGroupModal
-                   show={this.state.deleteModals[item.id]}
-                   onHide={() => this.setDeleteModalShow(false, item.id)}
-                   item={item}
-                   anyMember = {item.members_count}
-                 />
+                   <Link to={{
+                    pathname: `group/${item.id}/edit`,
+                    state: { name: item.name, description: item.description, id: item.id }
+                   }}>
+                    <Button variant="primary">
+                      Edit
+                    </Button>
+                   </Link>
+                   <Button variant="danger" onClick={() => this.setDeleteModalShow(true, item.id)}>
+                    Delete Group
+                   </Button>
+                   <DeleteGroupModal
+                     show={this.state.deleteModals[item.id]}
+                     onHide={() => this.setDeleteModalShow(false, item.id)}
+                     item={item}
+                     anyMember = {item.members_count}
+                   />
                  </td>
                 </tr>
              ))}

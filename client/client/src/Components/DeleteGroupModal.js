@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 
@@ -21,6 +21,9 @@ class DeleteGroupModal extends React.Component {
       }).then(function(response) {
         return response.text();
       });
+      // TODO: needs to be refactored to prevent form default behaviour which send
+      // unnecessary requests to back-end causing server error
+      // see EditGroupPage for possible refactor strategy
   }
 
   render() {
