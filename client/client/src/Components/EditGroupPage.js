@@ -46,6 +46,7 @@ class EditGroupPage extends React.Component {
       alert(e);
     }
     this.setState({redirectToReferrer:true})
+
   }
 
   render() {
